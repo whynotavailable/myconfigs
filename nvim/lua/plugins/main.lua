@@ -50,6 +50,10 @@ return {
 		},
 	},
 	{
+		"akinsho/bufferline.nvim",
+		enabled = false,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
