@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+DIR=$(dirname "$0")
+
+if [[ "$1" == "force" ]]
+then
+  git add .
+  git reset --hard
+fi
+git pull
+
