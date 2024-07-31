@@ -12,10 +12,8 @@ config.inactive_pane_hsb = {
 	brightness = 1,
 }
 
--- This is where you actually apply your config choices
 config.font_size = 14.0
 config.hide_tab_bar_if_only_one_tab = true
--- and finally, return the configuration to wezterm
 
 config.keys = {
 	{ key = "LeftArrow", mods = mod_keys, action = act.ActivateTabRelative(-1) },
