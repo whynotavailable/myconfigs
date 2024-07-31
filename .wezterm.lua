@@ -5,6 +5,8 @@ local act = wezterm.action
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+local mod_keys = "CTRL|SHIFT"
+
 config.inactive_pane_hsb = {
 	saturation = 1,
 	brightness = 1,
@@ -16,18 +18,18 @@ config.hide_tab_bar_if_only_one_tab = true
 -- and finally, return the configuration to wezterm
 
 config.keys = {
-	{ key = "LeftArrow", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(-1) },
-	{ key = "RightArrow", mods = "CTRL|SHIFT", action = act.ActivateTabRelative(1) },
+	{ key = "LeftArrow", mods = mod_keys, action = act.ActivateTabRelative(-1) },
+	{ key = "RightArrow", mods = mod_keys, action = act.ActivateTabRelative(1) },
 	{
 		key = "w",
-		mods = "CTRL|SHIFT",
+		mods = mod_keys,
 		action = act.CloseCurrentPane({ confirm = false }),
 	},
-	{ key = "{", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
-	{ key = "}", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
+	{ key = "{", mods = mod_keys, action = act.MoveTabRelative(-1) },
+	{ key = "}", mods = mod_keys, action = act.MoveTabRelative(1) },
 	{
 		key = "Enter",
-		mods = "CTRL|SHIFT",
+		mods = mod_keys,
 		action = act.SplitPane({
 			direction = "Down",
 			size = { Percent = 15 },
@@ -35,12 +37,12 @@ config.keys = {
 	},
 	{
 		key = "UpArrow",
-		mods = "CTRL|SHIFT",
+		mods = mod_keys,
 		action = act.ActivatePaneDirection("Up"),
 	},
 	{
 		key = "DownArrow",
-		mods = "CTRL|SHIFT",
+		mods = mod_keys,
 		action = act.ActivatePaneDirection("Down"),
 	},
 }
