@@ -21,6 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.cmd("autocmd BufRead,BufNewFile *.hbs set filetype=html")
+
 vim.opt.colorcolumn = "120"
 
 -- Setup lazy.nvim
