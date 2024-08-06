@@ -44,9 +44,13 @@ return {
 		},
 	},
 	{
+		"EdenEast/nightfox.nvim",
+		opts = {},
+	}, -- lazy
+	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "catppuccin",
+			colorscheme = "carbonfox",
 		},
 	},
 	{
