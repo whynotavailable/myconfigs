@@ -2,9 +2,17 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local carbonfox = wezterm.color.get_builtin_schemes()["carbonfox"]
+carbonfox.split = carbonfox.foreground
+
 -- This will hold the configuration.
 local config = wezterm.config_builder()
-config.color_scheme = "carbonfox"
+
+config.color_schemes = {
+	["my_carbonfox"] = carbonfox,
+}
+
+config.color_scheme = "my_carbonfox"
 
 local mod_keys = "CTRL|SHIFT"
 
