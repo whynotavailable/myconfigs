@@ -34,6 +34,7 @@ return {
 					"typescript",
 					"css",
 					"scss",
+					"markdown",
 				},
 				sync_install = false,
 				highlight = { enable = true },
@@ -206,6 +207,20 @@ return {
 				html = {},
 			},
 			inlay_hints = { enabled = false },
+		},
+	},
+	{
+		"stevearc/conform.nvim",
+		optional = true,
+		opts = {
+			formatters = {
+				["mdformat"] = {
+					prepend_args = { "--wrap", "120" },
+				},
+			},
+			formatters_by_ft = {
+				["markdown"] = { "mdformat" },
+			},
 		},
 	},
 }
