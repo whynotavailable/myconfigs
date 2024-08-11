@@ -35,6 +35,7 @@ return {
 					"css",
 					"scss",
 					"markdown",
+					"rust",
 				},
 				sync_install = false,
 				highlight = { enable = true },

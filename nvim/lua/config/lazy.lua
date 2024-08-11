@@ -22,6 +22,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.cmd("autocmd BufRead,BufNewFile *.hbs set filetype=html")
+vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
 
 vim.opt.colorcolumn = "120"
 
