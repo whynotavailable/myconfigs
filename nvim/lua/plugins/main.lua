@@ -205,6 +205,7 @@ return {
 			servers = {
 				html = {},
 			},
+			inlay_hints = { enabled = false },
 		},
 	},
 }
