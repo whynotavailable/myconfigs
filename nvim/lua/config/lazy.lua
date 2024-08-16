@@ -1,3 +1,5 @@
+vim.o.tabstop = 4
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -23,6 +25,8 @@ vim.g.maplocalleader = "\\"
 
 vim.cmd("autocmd BufRead,BufNewFile *.hbs set filetype=html")
 vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
+
+vim.cmd("autocmd BufRead,BufNewFile *.go set tabstop=4")
 
 vim.opt.colorcolumn = "120"
 
