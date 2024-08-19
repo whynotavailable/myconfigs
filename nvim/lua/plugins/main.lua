@@ -36,6 +36,8 @@ return {
 					"scss",
 					"markdown",
 					"rust",
+					"templ",
+					"go",
 				},
 				sync_install = false,
 				highlight = { enable = true },
@@ -80,6 +82,7 @@ return {
 		opts = {
 			servers = {
 				html = {},
+				templ = {},
 			},
 			inlay_hints = {
 				enabled = false,
