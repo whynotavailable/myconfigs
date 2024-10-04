@@ -2,7 +2,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local carbonfox = wezterm.color.get_builtin_schemes()["carbonfox"]
+local carbonfox = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 carbonfox.split = carbonfox.foreground
 
 -- This will hold the configuration.
