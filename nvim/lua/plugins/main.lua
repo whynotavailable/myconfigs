@@ -115,7 +115,7 @@ return {
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		enabled = false,
+		-- enabled = false,
 	},
 	{
 		"folke/noice.nvim",
@@ -127,6 +127,7 @@ return {
 			servers = {
 				html = {},
 				templ = {},
+				zls = {},
 			},
 			inlay_hints = {
 				enabled = false,
@@ -144,6 +145,7 @@ return {
 			},
 			formatters_by_ft = {
 				["markdown"] = { "mdformat" },
+				["python"] = { "isort" },
 			},
 		},
 	},

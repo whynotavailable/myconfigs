@@ -28,6 +28,13 @@ vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
 
 vim.cmd("autocmd BufRead,BufNewFile *.go set tabstop=4")
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "python" },
+	callback = function()
+		vim.b.autoformat = false
+	end,
+})
+
 vim.opt.colorcolumn = "120"
 
 -- Setup lazy.nvim
