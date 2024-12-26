@@ -1,4 +1,5 @@
 vim.o.tabstop = 4
+vim.g.lazyvim_picker = "telescope"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
