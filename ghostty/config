@@ -1,4 +1,4 @@
 font-family = "jetBrains Mono"
 font-size = 14
-theme = "Brogrammer"
+theme = "catppuccin-mocha"
 unfocused-split-opacity = 1
