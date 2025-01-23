@@ -1,15 +1,5 @@
 return {
 	{
-		"EdenEast/nightfox.nvim",
-		opts = {},
-	}, -- lazy
-	{
-		"LazyVim/LazyVim",
-		opts = {
-			colorscheme = "carbonfox",
-		},
-	},
-	{
 		"akinsho/bufferline.nvim",
 		enabled = false,
 	},
@@ -19,6 +9,7 @@ return {
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 
+			---@diagnostic disable-next-line: missing-fields
 			configs.setup({
 				ensure_installed = {
 					"c_sharp",
@@ -36,8 +27,6 @@ return {
 					"scss",
 					"markdown",
 					"rust",
-					"templ",
-					"go",
 					"gdscript",
 				},
 				sync_install = false,
@@ -64,7 +53,7 @@ return {
 		opts = {
 			formatters = {
 				["mdformat"] = {
-					prepend_args = { "--wrap", "120" },
+					prepend_args = { "--wrap", "120" }, -- The only reason to actually use mdformat
 				},
 			},
 			formatters_by_ft = {
@@ -73,5 +62,9 @@ return {
 				["cpp"] = { "clang-format" },
 			},
 		},
+	},
+	{
+		"folke/noice.nvim",
+		enabled = false,
 	},
 }
