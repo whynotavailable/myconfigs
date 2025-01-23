@@ -1,5 +1,5 @@
 font-family = "jetBrains Mono"
 font-size = 14
-#theme = "catppuccin-mocha"
+# theme = "catppuccin-mocha"
 theme = "carbonfox"
 unfocused-split-opacity = 1
