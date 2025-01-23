@@ -1,4 +1,3 @@
-vim.o.tabstop = 4
 vim.g.lazyvim_picker = "telescope"
 
 -- Bootstrap lazy.nvim
@@ -24,17 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.cmd("autocmd BufRead,BufNewFile *.hbs set filetype=html")
 vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
-
-vim.cmd("autocmd BufRead,BufNewFile *.go set tabstop=4")
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "python" },
-	callback = function()
-		vim.b.autoformat = false
-	end,
-})
 
 vim.opt.colorcolumn = "120"
 
