@@ -1,8 +1,14 @@
 return {
+	-- Disabled stuff
 	{
 		"akinsho/bufferline.nvim",
 		enabled = false,
 	},
+	{
+		"folke/noice.nvim",
+		enabled = false,
+	},
+	-- Actual proper configs
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -35,6 +41,7 @@ return {
 			})
 		end,
 	},
+	-- Small updates and basic LSPs
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
@@ -43,7 +50,7 @@ return {
 				gdscript = {},
 			},
 			inlay_hints = {
-				enabled = false,
+				enabled = false, -- This disables the prop names showing up in functions causing weirdness
 			},
 		},
 	},
@@ -58,13 +65,8 @@ return {
 			},
 			formatters_by_ft = {
 				["markdown"] = { "mdformat" },
-				["python"] = { "isort" },
 				["cpp"] = { "clang-format" },
 			},
 		},
-	},
-	{
-		"folke/noice.nvim",
-		enabled = false,
 	},
 }
