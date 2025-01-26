@@ -1,3 +1,8 @@
+local themes = {
+	carbon = "carbonfox",
+	night = "nightfox",
+}
+
 return {
 	{
 		"EdenEast/nightfox.nvim",
@@ -6,7 +11,7 @@ return {
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "carbonfox",
+			colorscheme = themes.night,
 		},
 	},
 }
