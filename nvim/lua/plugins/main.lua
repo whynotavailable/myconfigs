@@ -41,6 +41,16 @@ return {
 			-- print(vim.inspect(opts)) -- Keep around as example
 		end,
 	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		opts = {
+			filesystem = {
+				filtered_items = {
+					visible = true,
+				},
+			},
+		},
+	},
 	-- Small updates and basic LSPs
 	{
 		"neovim/nvim-lspconfig",
