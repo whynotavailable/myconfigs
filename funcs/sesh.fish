@@ -28,7 +28,7 @@ function sesh -d "Manage sessions"
     end
 
     # Init sesh file.
-    argparse i/init=? l/list rmhere -- $argv
+    argparse i/init=? l/list -- $argv
     or return
 
     if set -ql _flag_init
@@ -48,29 +48,6 @@ function sesh -d "Manage sessions"
         for s in $sessions
             set parts (string split : $s)
             echo $parts[1]
-        end
-
-        return
-    end
-
-    if set -ql _flag_rmhere
-        rm -f $tempSessFile
-        set found 0
-
-        for s in $sessions
-            set parts (string split : $s)
-            if test "$(pwd)" = "$parts[2]"
-                set found 1
-            else
-                echo $s >>$tempSessFile
-            end
-        end
-
-        if test $found -eq 1
-            mv $tempSessFile $sessFile
-        else
-            rm -f $tempSessFile
-            echo "Current directory not found in session"
         end
 
         return
