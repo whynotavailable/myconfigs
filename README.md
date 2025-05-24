@@ -11,3 +11,9 @@ ln -s $HOME/myconfigs/.wezterm.lua $HOME/.wezterm.lua
 ln -s $HOME/myconfigs/ghostty $HOME/.config/ghostty
 ln -s $HOME/myconfigs/funcs/sesh.fish $HOME/.config/fish/functions/sesh.fish
 ```
+
+## Fish stuff
+
+```shell
+set -U fish_prompt_pwd_dir_length 0
+```
