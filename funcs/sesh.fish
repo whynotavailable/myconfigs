@@ -13,9 +13,26 @@ function activate-sesh
 
 end
 
-function sesh
+function sesh -d "Manage sessions"
     # Init sesh file.
-    if test "$argv[1]" = --list
+    argparse i/init=? l/list rmhere -- $argv
+    or return
+
+    if set -ql _flag_init
+        echo init
+        if test -n "$_flag_init"
+            set key "$_flag_init"
+        else
+            set ldir $(string split / $(pwd))
+            set key "$ldir[-1]"
+        end
+
+        set -aUu sesh "$key:$(pwd)"
+
+        return
+    end
+
+    if set -ql _flag_list
         for s in $sesh
             if test -z "$s"
                 continue
@@ -27,20 +44,7 @@ function sesh
         return
     end
 
-    if test "$argv[1]" = --init
-        if test -z "$argv[2]"
-            set ldir $(string split / $(pwd))
-            set key "$ldir[-1]"
-        else
-            set key "$argv[2]"
-        end
-
-        set -aUu sesh "$key:$(pwd)"
-
-        return
-    end
-
-    if test "$argv[1]" = --rmhere
+    if set -ql _flag_list
         for i in (seq (count $sesh))
             set parts (string split : $sesh[$i])
             # Probs useless but I don't care
@@ -55,7 +59,21 @@ function sesh
         return
     end
 
-    activate-sesh $argv[(count $argv)]
+    argparse --min-args=1 -- $argv
+    or return
+
+    set found 0
+    for s in $sesh
+        set parts (string split : $s)
+        if test "$parts[1]" = "$argv[1]"
+            set found 1
+            cd "$parts[2]"
+        end
+    end
+
+    if test $found -ne 1
+        echo "No session found with key $argv[1]"
+    end
 end
 
 complete -c sesh -l init
