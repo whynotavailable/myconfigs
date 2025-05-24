@@ -1,3 +1,6 @@
+set sessFile "$HOME/.sesh"
+set tempSessFile "$HOME/.tempsesh"
+
 function activate-sesh
     if test -z "$argv[1]"
         echo "Missing Session Name"
@@ -14,12 +17,21 @@ function activate-sesh
 end
 
 function sesh -d "Manage sessions"
+    if test ! -e $sessFile
+        touch $sessFile
+    end
+
+    for s in (cat $sessFile)
+        if test -n "$s"
+            set -a sessions "$s"
+        end
+    end
+
     # Init sesh file.
     argparse i/init=? l/list rmhere -- $argv
     or return
 
     if set -ql _flag_init
-        echo init
         if test -n "$_flag_init"
             set key "$_flag_init"
         else
@@ -27,16 +39,13 @@ function sesh -d "Manage sessions"
             set key "$ldir[-1]"
         end
 
-        set -aUu sesh "$key:$(pwd)"
+        echo "$key:$(pwd)" >>$sessFile
 
         return
     end
 
     if set -ql _flag_list
-        for s in $sesh
-            if test -z "$s"
-                continue
-            end
+        for s in $sessions
             set parts (string split : $s)
             echo $parts[1]
         end
@@ -44,17 +53,25 @@ function sesh -d "Manage sessions"
         return
     end
 
-    if set -ql _flag_list
-        for i in (seq (count $sesh))
-            set parts (string split : $sesh[$i])
-            # Probs useless but I don't care
-            set path (pwd)
-            if test "$path" = "$parts[2]"
-                set -e sesh[$i]
-                return
+    if set -ql _flag_rmhere
+        rm -f $tempSessFile
+        set found 0
+
+        for s in $sessions
+            set parts (string split : $s)
+            if test "$(pwd)" = "$parts[2]"
+                set found 1
+            else
+                echo $s >>$tempSessFile
             end
         end
-        echo "Current path not in session"
+
+        if test $found -eq 1
+            mv $tempSessFile $sessFile
+        else
+            rm -f $tempSessFile
+            echo "Current directory not found in session"
+        end
 
         return
     end
@@ -63,7 +80,7 @@ function sesh -d "Manage sessions"
     or return
 
     set found 0
-    for s in $sesh
+    for s in $sessions
         set parts (string split : $s)
         if test "$parts[1]" = "$argv[1]"
             set found 1
