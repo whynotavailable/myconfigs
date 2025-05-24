@@ -2,22 +2,19 @@ set sessFile "$HOME/.sesh"
 
 set sessionEditor nvim
 
-function activate-sesh
-    if test -z "$argv[1]"
-        echo "Missing Session Name"
-        return
-    end
+set seshDocs "sesh, the simple session manager
+commands:
+  -i,--init initialize the current directory as a session. Can pass a value to customize key.
+  -l,--list list current sessions.
+  -h,--help print these instructions
+  --edit open the session file in \$sessionEditor (currently $sessionEditor)
+  {key} cd into the session directory
 
-    for s in $sesh
-        set parts (string split : $s)
-        if test "$parts[1]" = "$argv[1]"
-            cd "$parts[2]"
-        end
-    end
+examples:
+  `sesh -i=hi` Save the CWD as they key 'hi'
+  `sesh hi` cd into the directory saved to the 'hi' session"
 
-end
-
-function sesh
+function sesh -d hi
     if test ! -e $sessFile
         touch $sessFile
     end
@@ -28,7 +25,7 @@ function sesh
         end
     end
 
-    argparse i/init=? l/list edit -- $argv
+    argparse i/init=? l/list h/help edit -- $argv
     or return
 
     if set -ql _flag_init
@@ -58,6 +55,11 @@ function sesh
         return
     end
 
+    if set -ql _flag_help
+        echo $seshDocs
+        return
+    end
+
     argparse --min-args=1 -- $argv
     or return
 
@@ -75,6 +77,7 @@ function sesh
     end
 end
 
+complete -c sesh -l help
 complete -c sesh -l init
 complete -c sesh -l list
 complete -c sesh -l edit
