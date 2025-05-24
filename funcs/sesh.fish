@@ -1,5 +1,6 @@
 set sessFile "$HOME/.sesh"
-set tempSessFile "$HOME/.tempsesh"
+
+set sessionEditor nvim
 
 function activate-sesh
     if test -z "$argv[1]"
@@ -16,7 +17,7 @@ function activate-sesh
 
 end
 
-function sesh -d "Manage sessions"
+function sesh
     if test ! -e $sessFile
         touch $sessFile
     end
@@ -27,8 +28,7 @@ function sesh -d "Manage sessions"
         end
     end
 
-    # Init sesh file.
-    argparse i/init=? l/list -- $argv
+    argparse i/init=? l/list edit -- $argv
     or return
 
     if set -ql _flag_init
@@ -53,6 +53,11 @@ function sesh -d "Manage sessions"
         return
     end
 
+    if set -ql _flag_edit
+        $sessionEditor $sessFile
+        return
+    end
+
     argparse --min-args=1 -- $argv
     or return
 
@@ -72,5 +77,5 @@ end
 
 complete -c sesh -l init
 complete -c sesh -l list
-complete -c sesh -l rmhere
+complete -c sesh -l edit
 complete -c sesh -a "(sesh --list)"
