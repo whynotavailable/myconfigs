@@ -32,8 +32,7 @@ function sesh -V seshDocs -V sessionEditor
         if test -n "$_flag_init"
             set key "$_flag_init"
         else
-            set ldir $(string split / $(pwd))
-            set key "$ldir[-1]"
+            set key "$(path basename (pwd))"
         end
 
         echo "$key:$(pwd)" >>$seshFile
