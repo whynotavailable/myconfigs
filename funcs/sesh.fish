@@ -77,8 +77,13 @@ function sesh -d hi
     end
 end
 
-complete -c sesh -l help
-complete -c sesh -l init
-complete -c sesh -l list
-complete -c sesh -l edit
-complete -c sesh -a "(sesh --list)"
+set seshCommands help init list edit
+
+complete -c sesh -f
+
+for s in $seshCommands
+    complete -c sesh -l $s
+    set -a seshLongs "--$s"
+end
+
+complete -c sesh -n "not __fish_seen_argument $seshLongs" -a "(sesh --list)"
