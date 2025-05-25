@@ -1,8 +1,8 @@
 set sessFile "$HOME/.sesh"
 
-set sessionEditor nvim
+set --local sessionEditor nvim
 
-set seshDocs "sesh, the simple session manager
+set --local seshDocs "sesh, the simple session manager
 commands:
   -i,--init initialize the current directory as a session. Can pass a value to customize key.
   -l,--list list current sessions.
@@ -14,7 +14,7 @@ examples:
   `sesh -i=hi` Save the CWD as they key 'hi'
   `sesh hi` cd into the directory saved to the 'hi' session"
 
-function sesh -d hi
+function sesh -V seshDocs -V sessionEditor
     if test ! -e $sessFile
         touch $sessFile
     end
@@ -77,13 +77,13 @@ function sesh -d hi
     end
 end
 
-set seshCommands help init list edit
+set --local seshCommands help init list edit
 
 complete -c sesh -f
 
 for s in $seshCommands
     complete -c sesh -l $s
-    set -a seshLongs "--$s"
+    set --local -a seshLongs "--$s"
 end
 
 complete -c sesh -n "not __fish_seen_argument $seshLongs" -a "(sesh --list)"
