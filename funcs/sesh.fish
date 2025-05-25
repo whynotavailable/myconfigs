@@ -13,7 +13,8 @@ examples:
   `sesh -i=hi` Save the CWD as they key 'hi'
   `sesh hi` cd into the directory saved to the 'hi' session
 
-Once you use sesh once during a session \$seshFile will be made available"
+Once you use sesh once during a session \$seshFile will be made available.
+It's missing originally due to autoloading."
 
 function sesh -V seshDocs -V sessionEditor
     if test ! -e $seshFile
@@ -26,7 +27,7 @@ function sesh -V seshDocs -V sessionEditor
         end
     end
 
-    argparse i/init=? l/list h/help edit -- $argv
+    argparse i/init=? l/list h/help -- $argv
     or return
 
     if set -ql _flag_init
