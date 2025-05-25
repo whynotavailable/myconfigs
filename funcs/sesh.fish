@@ -1,4 +1,4 @@
-set sessFile "$HOME/.sesh"
+set seshFile "$HOME/.sesh"
 
 set --local sessionEditor nvim
 
@@ -15,11 +15,11 @@ examples:
   `sesh hi` cd into the directory saved to the 'hi' session"
 
 function sesh -V seshDocs -V sessionEditor
-    if test ! -e $sessFile
-        touch $sessFile
+    if test ! -e $seshFile
+        touch $seshFile
     end
 
-    for s in (cat $sessFile)
+    for s in (cat $seshFile)
         if test -n "$s"
             set -a sessions "$s"
         end
@@ -36,7 +36,7 @@ function sesh -V seshDocs -V sessionEditor
             set key "$ldir[-1]"
         end
 
-        echo "$key:$(pwd)" >>$sessFile
+        echo "$key:$(pwd)" >>$seshFile
 
         return
     end
@@ -51,7 +51,7 @@ function sesh -V seshDocs -V sessionEditor
     end
 
     if set -ql _flag_edit
-        $sessionEditor $sessFile
+        $sessionEditor $seshFile
         return
     end
 
