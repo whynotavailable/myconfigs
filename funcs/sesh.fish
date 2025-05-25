@@ -69,6 +69,12 @@ function sesh -V seshDocs -V sessionEditor
         if test "$parts[1]" = "$argv[1]"
             set found 1
             cd "$parts[2]"
+
+            set extras $argv[2..]
+
+            if test -n "$extras"
+                $extras
+            end
         end
     end
 
