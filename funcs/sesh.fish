@@ -7,12 +7,13 @@ commands:
   -i,--init initialize the current directory as a session. Can pass a value to customize key.
   -l,--list list current sessions.
   -h,--help print these instructions
-  --edit open the session file in \$sessionEditor (currently $sessionEditor)
-  {key} cd into the session directory
+  [key] cd into the session directory
 
 examples:
   `sesh -i=hi` Save the CWD as they key 'hi'
-  `sesh hi` cd into the directory saved to the 'hi' session"
+  `sesh hi` cd into the directory saved to the 'hi' session
+
+Once you use sesh once during a session \$seshFile will be made available"
 
 function sesh -V seshDocs -V sessionEditor
     if test ! -e $seshFile
@@ -49,11 +50,6 @@ function sesh -V seshDocs -V sessionEditor
         return
     end
 
-    if set -ql _flag_edit
-        $sessionEditor $seshFile
-        return
-    end
-
     if set -ql _flag_help
         echo $seshDocs
         return
@@ -76,8 +72,7 @@ function sesh -V seshDocs -V sessionEditor
     end
 end
 
-set --local seshCommands help init list edit
-
+set --local seshCommands help init list
 complete -c sesh -f
 
 for s in $seshCommands
