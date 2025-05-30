@@ -17,6 +17,6 @@ function fish_prompt
     fish_git_prompt
 
     set_color $fish_color_comment
-    echo -n ':> '
+    echo -n '> '
     set_color normal
 end
