@@ -2,9 +2,6 @@ function gc -d "Alias for git commit with -p flag to autopush"
     argparse --min-args=1 p/push -- $argv
     or return
 
-    argparse --min-args=1 -- $argv
-    or return
-
     git add -A
     git commit -m $argv[1]
 
