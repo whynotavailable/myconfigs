@@ -7,7 +7,7 @@ function ss
     if test -n "$argv[1]"
         set sessionName "$argv[1]"
     else
-        set sessionName "$(path basename (pwd))"
+        set sessionName "sesh-$(uuidgen)"
     end
 
     tmux new-session -A -s $sessionName
