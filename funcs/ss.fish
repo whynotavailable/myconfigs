@@ -15,8 +15,8 @@ end
 
 function ss-list
     for s in (tmux ls 2> /dev/null)
-        set parts (string split : $s)
-        echo $parts[1]
+        set parts (string split : "$s")
+        echo "$parts[1]"
     end
 end
 
