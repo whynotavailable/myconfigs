@@ -17,21 +17,26 @@ function ss
     else
         # TODO: This this as the basename if it's not in the home
         if test "$path" = "$HOME"
-            set sessionName "sesh-$(uuidgen)"
+            # set sessionName "sesh-$(uuidgen)"
+            set sessionName home
         else
             set sessionName (path basename $PWD)
         end
     end
 
-    ss-attach "$sessionName"
+    if test -n "$TMUX"
+        ss-attach "$sessionName"
 
-    if test $status -eq 0
-        return
+        if test $status -eq 0
+            return
+        end
+
+        tmux new-session -d -s $sessionName
+
+        ss-attach "$sessionName"
+    else
+        tmux new-session -A -n $sessionName
     end
-
-    tmux new-session -d -s $sessionName
-
-    ss-attach "$sessionName"
 end
 
 function ss-list
