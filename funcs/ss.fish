@@ -1,16 +1,17 @@
 function ss
-    if test -n "$TMUX"
-        echo "already in a session lol"
-        return
-    end
-
     if test -n "$argv[1]"
         set sessionName "$argv[1]"
     else
         set sessionName "sesh-$(uuidgen)"
     end
 
-    tmux new-session -A -s $sessionName
+    if test -n "$TMUX"
+        echo "already in a session, setting as detached"
+        tmux new-session -d -s $sessionName
+    else
+        tmux new-session -A -s $sessionName
+    end
+
 end
 
 function ss-list
