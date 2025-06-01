@@ -35,7 +35,7 @@ function ss
 
         ss-attach "$sessionName"
     else
-        tmux new-session -A -n $sessionName
+        tmux new-session -A -s $sessionName
     end
 end
 
