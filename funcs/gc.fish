@@ -1,4 +1,4 @@
-function gc -d "Alias for git commit with -p flag to autopush"
+function gc -d "Alias for git commit with an autopush"
     argparse --min-args=1 -- $argv
     or return
 
