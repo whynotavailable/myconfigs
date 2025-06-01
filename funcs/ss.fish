@@ -1,3 +1,4 @@
+# Attempt to attach to the target session. This requires a specific pane or you have to use the selector.
 function ss-attach
     set targetPane (tmux list-sessions -F '#D:#{session_name}' | grep ":$argv[1]")
 
@@ -12,18 +13,21 @@ end
 
 function ss
     set path (pwd)
+
     if test -n "$argv[1]"
+        # if a name is passed in use it.
         set sessionName "$argv[1]"
     else
-        # TODO: This this as the basename if it's not in the home
         if test "$path" = "$HOME"
-            # set sessionName "sesh-$(uuidgen)"
+            # if it's the root use "home"
             set sessionName home
         else
             set sessionName (path basename $PWD)
         end
     end
 
+    # If you are in a session, try and switch If that doesn't work, make it detached and switch to it.
+    # Otherwise just use the -A flag on new session which will create it or attach if it already exists.
     if test -n "$TMUX"
         ss-attach "$sessionName"
 
