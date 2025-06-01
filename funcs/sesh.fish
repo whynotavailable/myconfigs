@@ -1,4 +1,4 @@
-set seshFile "$HOME/.sesh"
+set seshFile "$HOME/.sesh.json"
 
 set --local sessionEditor nvim
 
@@ -18,14 +18,10 @@ It's missing originally due to autoloading."
 
 function sesh -V seshDocs -V sessionEditor
     if test ! -e $seshFile
-        touch $seshFile
+        echo "{}" >$seshFile
     end
 
-    for s in (cat $seshFile)
-        if test -n "$s"
-            set -a sessions "$s"
-        end
-    end
+    set sessions (jq -r 'keys_unsorted[]' $seshFile)
 
     argparse i/init=? l/list h/help -- $argv
     or return
@@ -37,15 +33,15 @@ function sesh -V seshDocs -V sessionEditor
             set key "$(path basename (pwd))"
         end
 
-        echo "$key:$(pwd)" >>$seshFile
+        set data "$(jq ".\"$key\" = \"$(pwd)\"" $seshFile)"
+        echo $data >$seshFile
 
         return
     end
 
     if set -ql _flag_list
         for s in $sessions
-            set parts (string split : $s)
-            echo $parts[1]
+            echo $s
         end
 
         return
@@ -59,17 +55,12 @@ function sesh -V seshDocs -V sessionEditor
     argparse --min-args=1 -- $argv
     or return
 
-    set found 0
-    for s in $sessions
-        set parts (string split : $s)
-        if test "$parts[1]" = "$argv[1]"
-            set found 1
-            ss --path "$parts[2]" "$parts[1]"
-        end
-    end
+    set sessionPath "$(jq -r ".\"$argv[1]\"" $seshFile)"
 
-    if test $found -ne 1
+    if test "$sessionPath" = null
         echo "No session found with key $argv[1]"
+    else
+        ss --path "$sessionPath" "$argv[1]"
     end
 end
 
