@@ -1,18 +1,12 @@
-# Attempt to attach to the target session. This requires a specific pane or you have to use the selector.
-function ss-attach
-    set targetPane (tmux list-sessions -F '#D:#{session_name}' | grep ":$argv[1]")
-
-    if test -n "$targetPane"
-        set actualPane (string split : $targetPane)[1]
-        tmux switch-client -t "$actualPane"
-    else
-        return 1
-    end
-
-end
-
 function ss
-    set path (pwd)
+    argparse p/path= -- $argv
+    or return
+
+    if set -ql _flag_path
+        set path "$_flag_path"
+    else
+        set path (pwd)
+    end
 
     if test -n "$argv[1]"
         # if a name is passed in use it.
@@ -35,11 +29,11 @@ function ss
             return
         end
 
-        tmux new-session -d -s $sessionName
+        tmux new-session -d -s $sessionName -c $path
 
         ss-attach "$sessionName"
     else
-        tmux new-session -A -s $sessionName
+        tmux new-session -A -s $sessionName -c $path
     end
 end
 

@@ -64,7 +64,7 @@ function sesh -V seshDocs -V sessionEditor
         set parts (string split : $s)
         if test "$parts[1]" = "$argv[1]"
             set found 1
-            cd "$parts[2]"
+            ss --path "$parts[2]" "$parts[1]"
         end
     end
 
