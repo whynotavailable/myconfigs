@@ -5,3 +5,6 @@ if status is-interactive
 
     alias sa="tmux at"
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
