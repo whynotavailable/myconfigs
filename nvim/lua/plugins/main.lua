@@ -1,10 +1,4 @@
 return {
-  {
-    "vhyrro/luarocks.nvim",
-    opts = {
-      rocks = { "xml2lua", "inspect" }, -- Specify LuaRocks packages to install
-    },
-  },
   -- Disabled stuff
   {
     "akinsho/bufferline.nvim",
