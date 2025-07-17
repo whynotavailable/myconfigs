@@ -79,4 +79,11 @@ return {
       },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      -- This is because the gopls staticcheck doesn't find my settings.
+      opts.servers.gopls.settings.gopls.staticcheck = false
+    end,
+  },
 }
