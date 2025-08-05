@@ -1,4 +1,4 @@
-set seshFile "$HOME/.sesh.json"
+set seshFile "$HOME/.sesh.yaml"
 
 set --local sessionEditor nvim
 
@@ -21,7 +21,7 @@ function sesh -V seshDocs -V sessionEditor
         echo "{}" >$seshFile
     end
 
-    set sessions (jq -r 'keys_unsorted[]' $seshFile)
+    set sessions (yq -r 'keys[]' $seshFile)
 
     argparse i/init=? l/list h/help -- $argv
     or return
@@ -33,7 +33,7 @@ function sesh -V seshDocs -V sessionEditor
             set key "$(path basename (pwd))"
         end
 
-        set data "$(jq ".\"$key\" = \"$(pwd)\"" $seshFile)"
+        set data "$(yq ".\"$key\" = \"$(pwd)\"" $seshFile)"
         echo $data >$seshFile
 
         return
@@ -55,7 +55,7 @@ function sesh -V seshDocs -V sessionEditor
     argparse --min-args=1 -- $argv
     or return
 
-    set sessionPath "$(jq -r ".\"$argv[1]\"" $seshFile)"
+    set sessionPath "$(yq -r ".\"$argv[1]\"" $seshFile)"
 
     if test "$sessionPath" = null
         echo "No session found with key $argv[1]"
