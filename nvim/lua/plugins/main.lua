@@ -72,10 +72,14 @@ return {
         ["mdformat"] = {
           prepend_args = { "--wrap", "120" }, -- The only reason to actually use mdformat
         },
+        ["wrap"] = {
+          command = "wrap",
+        },
       },
       formatters_by_ft = {
         ["markdown"] = { "mdformat" },
         ["cpp"] = { "clang-format" },
+        ["text"] = { "wrap" },
       },
     },
   },
