@@ -70,7 +70,7 @@ return {
     opts = {
       formatters = {
         ["mdformat"] = {
-          prepend_args = { "--wrap", "120" }, -- The only reason to actually use mdformat
+          prepend_args = { "--wrap", "100" }, -- The only reason to actually use mdformat
         },
         ["wrap"] = {
           command = "wrap",
