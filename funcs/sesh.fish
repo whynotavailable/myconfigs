@@ -54,7 +54,6 @@ complete -c sesh -f
 
 for s in $seshCommands
     complete -c sesh -n "not __fish_contains_opt -s $seshCommands" -l $s
-    set --local -a seshLongs "--$s"
 end
 
 complete -c sesh -n "not __fish_contains_opt -s $seshCommands" -a "(sesh --list)"
