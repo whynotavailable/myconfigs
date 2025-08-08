@@ -7,7 +7,7 @@ function sesh
 
     set sessions (yq -r 'keys[]' $seshFile)
 
-    argparse i/init=? l/list -- $argv
+    argparse i/init=? l/list s/save -- $argv
     or return
 
     if set -ql _flag_init
@@ -37,8 +37,16 @@ function sesh
         return
     end
 
-    if set -ql _flag_help
-        echo $seshDocs
+    if set -ql _flag_save
+        set currentSession "$(tmux ls 2> /dev/null | grep attached)"
+        if test -n "$currentSession"
+            set parts (string split : "$currentSession")
+
+            # I hate this.
+            set data "$(yq ".\"$parts[1]\" = \"$(pwd)\"" $seshFile)"
+            echo $data >$seshFile
+        end
+
         return
     end
 
@@ -54,7 +62,7 @@ function sesh
     end
 end
 
-set --local seshCommands init list
+set --local seshCommands list save
 complete -c sesh -f
 
 for s in $seshCommands
