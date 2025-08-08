@@ -1,29 +1,13 @@
 set seshFile "$HOME/.sesh.yaml"
 
-set --local sessionEditor nvim
-
-set --local seshDocs "sesh, the simple session manager
-commands:
-  -i,--init initialize the current directory as a session. Can pass a value to customize key.
-  -l,--list list current sessions.
-  -h,--help print these instructions
-  [key] cd into the session directory
-
-examples:
-  `sesh -i=hi` Save the CWD as they key 'hi'
-  `sesh hi` cd into the directory saved to the 'hi' session
-
-Once you use sesh once during a session \$seshFile will be made available.
-It's missing originally due to autoloading."
-
-function sesh -V seshDocs -V sessionEditor
+function sesh
     if test ! -e $seshFile
         echo "{}" >$seshFile
     end
 
     set sessions (yq -r 'keys[]' $seshFile)
 
-    argparse i/init=? l/list h/help -- $argv
+    argparse i/init=? l/list -- $argv
     or return
 
     if set -ql _flag_init
@@ -40,8 +24,14 @@ function sesh -V seshDocs -V sessionEditor
     end
 
     if set -ql _flag_list
+        # TODO: De-dup this list
         for s in $sessions
             echo $s
+        end
+
+        for s in (tmux ls 2> /dev/null)
+            set parts (string split : "$s")
+            echo "$parts[1]"
         end
 
         return
@@ -58,13 +48,13 @@ function sesh -V seshDocs -V sessionEditor
     set sessionPath "$(yq -r ".\"$argv[1]\"" $seshFile)"
 
     if test "$sessionPath" = null
-        echo "No session found with key $argv[1]"
+        ss "$argv[1]"
     else
         ss --path "$sessionPath" "$argv[1]"
     end
 end
 
-set --local seshCommands help init list
+set --local seshCommands init list
 complete -c sesh -f
 
 for s in $seshCommands
