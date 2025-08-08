@@ -7,21 +7,8 @@ function sesh
 
     set sessions (yq -r 'keys[]' $seshFile)
 
-    argparse i/init=? l/list s/save -- $argv
+    argparse l/list s/save -- $argv
     or return
-
-    if set -ql _flag_init
-        if test -n "$_flag_init"
-            set key "$_flag_init"
-        else
-            set key "$(path basename (pwd))"
-        end
-
-        set data "$(yq ".\"$key\" = \"$(pwd)\"" $seshFile)"
-        echo $data >$seshFile
-
-        return
-    end
 
     if set -ql _flag_list
         # TODO: De-dup this list
