@@ -6,5 +6,13 @@ if status is-interactive
     alias sa="tmux at"
 end
 
+function tap
+    git c tap
+
+    if test -n "$(git remote | grep origin)"
+        git push
+    end
+end
+
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
