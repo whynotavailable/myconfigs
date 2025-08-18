@@ -7,7 +7,15 @@ if status is-interactive
 end
 
 function tap
-    git c tap
+    if test -e "./.pre_tap.fish"
+        fish ./.pre_tap.fish
+    end
+
+    if test -n "$argv[1]"
+        git c "$argv[1]"
+    else
+        git c tap
+    end
 
     if test -n "$(git remote | grep origin)"
         git push
