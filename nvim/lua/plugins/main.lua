@@ -69,15 +69,15 @@ return {
     optional = true,
     opts = {
       formatters = {
-        ["mdformat"] = {
-          prepend_args = { "--wrap", "100" }, -- The only reason to actually use mdformat
-        },
+        --["mdformat"] = {
+        --  prepend_args = { "--wrap", "100" }, -- The only reason to actually use mdformat
+        --},
         ["wrap"] = {
           command = "wrap",
         },
       },
       formatters_by_ft = {
-        ["markdown"] = { "mdformat" },
+        --["markdown"] = { "mdformat" },
         ["cpp"] = { "clang-format" },
         ["text"] = { "wrap" },
       },
