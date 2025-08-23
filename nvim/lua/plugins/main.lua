@@ -75,9 +75,12 @@ return {
         ["wrap"] = {
           command = "wrap",
         },
+        ["md"] = {
+          command = "md",
+        },
       },
       formatters_by_ft = {
-        --["markdown"] = { "mdformat" },
+        ["markdown"] = { "md" },
         ["cpp"] = { "clang-format" },
         ["text"] = { "wrap" },
       },
