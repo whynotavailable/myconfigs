@@ -14,7 +14,10 @@ return {
     opts = {
       sync_install = false,
       highlight = { enable = true },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = { "html" },
+      },
     },
   },
   {
@@ -56,7 +59,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        html = {},
+        html = {
+          provideFormatter = false,
+        },
         gdscript = {},
       },
       inlay_hints = {
