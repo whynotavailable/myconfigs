@@ -85,7 +85,7 @@ return {
         },
       },
       formatters_by_ft = {
-        ["markdown"] = { "md" },
+        ["markdown"] = { "mdformat" },
         ["cpp"] = { "clang-format" },
         ["text"] = { "wrap" },
       },
