@@ -11,10 +11,12 @@ function tap
         fish ./.pre_tap.fish
     end
 
+    git add -A
+
     if test -n "$argv[1]"
-        git c "$argv[1]"
+        git commit -m "$argv[1]"
     else
-        git c tap
+        git commit -m tap
     end
 
     if test -n "$(git remote | grep origin)"
