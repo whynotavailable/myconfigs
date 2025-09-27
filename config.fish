@@ -14,7 +14,8 @@ function tap
     git add -A
 
     if test -n "$argv[1]"
-        git commit -m "$argv[1]"
+        # Test expansion here
+        git commit -m "$argv"
     else
         git commit -m tap
     end
@@ -26,3 +27,6 @@ end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
+
+# Created by `pipx` on 2025-09-22 12:50:04
+set PATH $PATH /home/tom/.local/bin
