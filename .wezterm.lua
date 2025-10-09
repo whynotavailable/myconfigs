@@ -11,7 +11,7 @@ config.inactive_pane_hsb = {
   brightness = 1,
 }
 
-if wezterm.target_tripple == "aarch64-apple-darwin" then
+if wezterm.target_triple == "aarch64-apple-darwin" then
   config.font_size = 15.0
 else
   config.font_size = 12.0
