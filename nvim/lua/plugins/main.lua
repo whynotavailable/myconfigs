@@ -5,6 +5,10 @@ return {
     enabled = false,
   },
   {
+    "whynotavailable/wrap.nvim",
+    enabled = true,
+  },
+  {
     "folke/noice.nvim",
     enabled = false,
   },
@@ -73,21 +77,9 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
-      formatters = {
-        --["mdformat"] = {
-        --  prepend_args = { "--wrap", "100" }, -- The only reason to actually use mdformat
-        --},
-        ["wrap"] = {
-          command = "wrap",
-        },
-        ["md"] = {
-          command = "md",
-        },
-      },
+      formatters = {},
       formatters_by_ft = {
-        ["markdown"] = { "mdformat" },
         ["cpp"] = { "clang-format" },
-        ["text"] = { "wrap" },
       },
     },
   },
