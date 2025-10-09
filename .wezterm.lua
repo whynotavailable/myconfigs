@@ -11,7 +11,12 @@ config.inactive_pane_hsb = {
   brightness = 1,
 }
 
-config.font_size = 12.0
+if wezterm.target_tripple == "aarch64-apple-darwin" then
+  config.font_size = 15.0
+else
+  config.font_size = 12.0
+end
+
 config.hide_tab_bar_if_only_one_tab = true
 
 return config

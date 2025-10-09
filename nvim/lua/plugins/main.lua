@@ -5,10 +5,6 @@ return {
     enabled = false,
   },
   {
-    "whynotavailable/wrap.nvim",
-    enabled = true,
-  },
-  {
     "folke/noice.nvim",
     enabled = false,
   },
