@@ -27,7 +27,7 @@ vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
 vim.cmd("autocmd BufRead,BufNewFile *.md set colorcolumn=100")
 
 vim.opt.colorcolumn = "120"
-vim.cmd("autocmd BufRead,BufNewFile *.txt set colorcolumn=100")
+vim.cmd("autocmd BufRead,BufNewFile *.txt set colorcolumn=90")
 
 -- Setup lazy.nvim
 require("lazy").setup({

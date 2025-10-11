@@ -1,4 +1,5 @@
 local function hard_wrap()
+  local linelength = tonumber(vim.o.colorcolumn)
   local vstart = vim.fn.getpos("v")
   local vend = vim.fn.getpos(".")
 
@@ -32,7 +33,7 @@ local function hard_wrap()
 
       if buffer ~= "" then
         -- TODO: Make the 100 here customizable
-        if (bufferlen + wordlen + 1) > 100 then
+        if (bufferlen + wordlen + 1) > linelength then
           table.insert(replacetext, buffer)
           buffer = ""
         else
