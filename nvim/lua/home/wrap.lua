@@ -52,7 +52,7 @@ local function hard_wrap()
   vim.api.nvim_input("<esc>")
 end
 
-vim.keymap.set({ "v", "x" }, "<Leader>pp", hard_wrap, {
+vim.keymap.set({ "v", "x" }, "<Leader>p", hard_wrap, {
   desc = "Wrap Some Text",
   noremap = true,
 })
