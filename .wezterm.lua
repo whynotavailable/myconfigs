@@ -1,9 +1,9 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
-
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.color_scheme = "nightfox"
 
 config.inactive_pane_hsb = {

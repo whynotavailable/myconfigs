@@ -24,7 +24,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
-vim.cmd("autocmd BufRead,BufNewFile *.md set colorcolumn=100")
+vim.cmd("autocmd BufRead,BufNewFile *.md set colorcolumn=90")
 
 vim.opt.colorcolumn = "120"
 vim.cmd("autocmd BufRead,BufNewFile *.txt set colorcolumn=90")
