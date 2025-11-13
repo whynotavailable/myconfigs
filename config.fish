@@ -49,6 +49,9 @@ function boom
 
     if test -e "./.init.fish"
         source ./.init.fish
+        echo init sourced
+    else
+        echo init missing
     end
 
     set -g is_boom boom
