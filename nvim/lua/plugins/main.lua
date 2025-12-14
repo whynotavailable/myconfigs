@@ -73,8 +73,13 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
-      formatters = {},
+      formatters = {
+        ["mdformat"] = {
+          prepend_args = { "--wrap", "90" }, -- The only reason to actually use mdformat
+        },
+      },
       formatters_by_ft = {
+        ["markdown"] = { "mdformat" },
         ["cpp"] = { "clang-format" },
       },
     },
