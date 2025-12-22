@@ -23,11 +23,16 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.cmd("autocmd BufRead,BufNewFile *.md set conceallevel=0")
-vim.cmd("autocmd BufRead,BufNewFile *.md set colorcolumn=90")
-
 vim.opt.colorcolumn = "120"
-vim.cmd("autocmd BufRead,BufNewFile *.txt set colorcolumn=90")
+
+vim.cmd("autocmd BufRead,BufNewFile *.md setlocal conceallevel=0")
+vim.cmd("autocmd BufRead,BufNewFile *.md setlocal colorcolumn=90")
+
+vim.cmd("autocmd BufRead,BufNewFile *.tex setlocal colorcolumn=90")
+vim.cmd("autocmd BufRead,BufNewFile *.tex setlocal spell")
+vim.cmd("autocmd BufRead,BufNewFile *.tex setlocal wrap")
+
+vim.cmd("autocmd BufRead,BufNewFile *.txt setlocal colorcolumn=90")
 
 -- Setup lazy.nvim
 require("lazy").setup({
