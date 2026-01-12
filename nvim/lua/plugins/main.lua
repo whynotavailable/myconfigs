@@ -16,7 +16,7 @@ return {
       highlight = { enable = true },
       indent = {
         enable = true,
-        disable = { "html" },
+        disable = { "html", "xml" },
       },
     },
   },
