@@ -30,7 +30,7 @@ function sesh
             set parts (string split : "$currentSession")
 
             # I hate this.
-            set data "$(yq -y ".\"$parts[1]\" = \"$(pwd)\"" $seshFile)"
+            set data "$(yq -o yaml ".\"$parts[1]\" = \"$(pwd)\"" $seshFile)"
             echo $data >$seshFile
         end
 
