@@ -66,3 +66,6 @@ set PATH $PATH /home/tom/.local/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# Created by `pipx` on 2026-02-26 11:18:59
+set PATH $PATH /Users/bob/.local/bin
