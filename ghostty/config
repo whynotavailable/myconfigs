@@ -1,4 +1,5 @@
 font-family = "jetBrains Mono"
-font-size = 14
+font-size = 15
 theme = "nightfox"
 unfocused-split-opacity = 1
+font-feature = -calt, -liga, -dlig
