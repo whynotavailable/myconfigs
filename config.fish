@@ -7,10 +7,6 @@ if status is-interactive
 end
 
 function tap
-    if test -e "./.pre_tap.fish"
-        fish ./.pre_tap.fish
-    end
-
     git add -A
 
     if test -n "$argv[1]"
@@ -18,7 +14,9 @@ function tap
         git commit -m "$argv"
     else
         # claude -p "Generate a one or two line commit message based on current git diff, return only the message." | read msg
-        git commit -m "tap updated\n$(git diff --name-only --cached)"
+        set msg (git diff --name-only --cached)
+        set -p msg tap
+        git commit -m "$msg"
     end
 
     if test -n "$(git remote | grep origin)"

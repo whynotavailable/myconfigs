@@ -18,3 +18,5 @@ To get nvim working with tmux
 ```sh
 set -Ux TERM xterm-256color
 ```
+
+t
