@@ -17,7 +17,8 @@ function tap
         # Test expansion here
         git commit -m "$argv"
     else
-        git commit -m tap
+        # claude -p "Generate a one or two line commit message based on current git diff, return only the message." | read msg
+        git commit -m "tap updated $(git diff --name-only --cached)"
     end
 
     if test -n "$(git remote | grep origin)"
