@@ -6,6 +6,11 @@ if status is-interactive
     alias sa="tmux at"
 end
 
+function differ
+    echo tap
+    git diff --name-only --cached
+end
+
 function tap
     git add -A
 
@@ -14,8 +19,7 @@ function tap
         git commit -m "$argv"
     else
         # claude -p "Generate a one or two line commit message based on current git diff, return only the message." | read msg
-        set msg (git diff --name-only --cached)
-        set -p msg tap
+        set msg "$(differ)"
         git commit -m "$msg"
     end
 
