@@ -15,8 +15,8 @@ function tap
     else
         # claude -p "Generate a one or two line commit message based on current git diff, return only the message." | read msg
         set msg (git diff --name-only --cached)
-        set -p msg tap
-        git commit -m "$msg"
+        set full tap "$msg"
+        git commit -m $full
     end
 
     if test -n "$(git remote | grep origin)"
