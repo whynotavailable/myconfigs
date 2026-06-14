@@ -6,11 +6,6 @@ if status is-interactive
     alias sa="tmux at"
 end
 
-function differ
-    echo tap
-    git diff --name-only --cached
-end
-
 function tap
     git add -A
 
@@ -19,8 +14,7 @@ function tap
         git commit -m "$argv"
     else
         # claude -p "Generate a one or two line commit message based on current git diff, return only the message." | read msg
-        set msg "$(differ)"
-        git commit -m "$msg"
+        git commit -m tap
     end
 
     if test -n "$(git remote | grep origin)"
@@ -28,43 +22,9 @@ function tap
     end
 end
 
-function boom
-    argparse f/force -- $argv
-    or return
-
-    if set -ql _flag_force
-        set -e is_boom
-    end
-
-    if test -n "$is_boom"
-        return
-    end
-
-    if test -e "./.env"
-        for row in (cat './.env')
-            set parts (string split --max=1 "=" "$row")
-            set -gx "$parts[1]" "$parts[2]"
-        end
-        echo 'envs set'
-    else
-        echo 'no .env found'
-    end
-
-    if test -e "./.init.fish"
-        source ./.init.fish
-        echo init sourced
-    else
-        echo init missing
-    end
-
-    set -g is_boom boom
+function clr
+    clear && tmux clear-history
 end
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-
-# Created by `pipx` on 2025-09-22 12:50:04
-set PATH $PATH /home/tom/.local/bin
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
