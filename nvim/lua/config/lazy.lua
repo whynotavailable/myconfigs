@@ -1,5 +1,5 @@
 vim.g.lazyvim_picker = "telescope"
-vim.g.root_spec = { "cwd" }
+-- vim.g.root_spec = { "cwd" }
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
